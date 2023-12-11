@@ -1,0 +1,11 @@
+<div class="home-hot-job">
+  <div *ngIf="!jobs || !jobs.length; else hasJob" class="main-title">
+    Chưa có công việc liên quan
+  </div>
+
+  <ng-template #hasJob>
+    <div class="main-title">Danh sách công việc liên quan</div>
+
+    <app-job-list-item *ngFor="let job of jobs" [job]="job"></app-job-list-item>
+  </ng-template>
+</div>

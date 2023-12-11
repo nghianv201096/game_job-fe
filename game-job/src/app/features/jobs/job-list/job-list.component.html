@@ -1,0 +1,28 @@
+<div class="home-container custom-padding-x-reverse">
+  <div class="register-post-job">
+    <button (click)="createJob()" class="btn btn-danger my-2 my-sm-0 btn-search-job">
+      Đăng tuyển ngay
+    </button>
+  </div>
+
+  <div class="search-job">
+    <div class="title">Tìm kiếm việc làm phù hợp</div>
+    <app-job-autocomplete #autocompleteSearch (onSearch)="search($event)"></app-job-autocomplete>
+  </div>
+  <hr />
+
+  <div class="home-hot-job">
+    <div class="main-title">Danh sách công việc</div>
+
+    <div *ngIf="!jobs || !jobs.length; else hasJob" class="title">
+      <h5>Chưa có danh sách công việc</h5>
+    </div>
+
+    <ng-template #hasJob>
+      <app-job-list-item
+        *ngFor="let job of jobs"
+        [job]="job"
+      ></app-job-list-item>
+    </ng-template>
+  </div>
+</div>

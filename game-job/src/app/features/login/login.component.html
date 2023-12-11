@@ -1,0 +1,45 @@
+<div class="card-container">
+  <div class="card card-login">
+    <div class="card-body">
+      <h1 class="card-title">Login</h1>
+
+      <form autocomplete="off" novalidate (ngSubmit)="loginUser()">
+        <div class="row pb-2">
+          <label for="username" class="col-form-label col-sm-4">Username</label>
+          <div class="col-md-8">
+            <input
+              type="text"
+              id="username"
+              name="username"
+              [(ngModel)]="user.username"
+              required
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <label for="password" class="col-form-label col-sm-4">Password</label>
+          <div class="col-md-8">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="user.password"
+              required
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="row p-3">
+          <ul>
+            <li>Admin user: Alice/123456</li>
+            <li>Normal user: Bob/123456</li>
+          </ul>
+        </div>
+        <div class="row">
+          <button type="submit" class="btn btn-outline-warning">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

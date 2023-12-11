@@ -1,0 +1,59 @@
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-dark box-shadow custom-navbar"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"
+      ><img class="logo" src="../../../assets/imgs/Logo.png"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex align-items-end" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li
+          *ngFor="let classification of classifications"
+          class="nav-item dropdown"
+        >
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ classification.typeName }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li *ngFor="let item of classification.items">
+              <a class="dropdown-item" href="#" (click)="searchClassification({type: classification.type, id: item.id})">{{ item.name }}</a>
+            </li>
+          </ul>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/nha-tuyen-dung']">Nhà tuyển dụng</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/ung-vien']">Ứng viên</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/ban-goi-dang']">Bán gói đăng</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/bai-dang-blog']">Bài đăng Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/blog']">Blog</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>

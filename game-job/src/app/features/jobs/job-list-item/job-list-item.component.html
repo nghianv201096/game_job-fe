@@ -1,0 +1,62 @@
+<div class="hot-job" style="position: relative">
+  <button class="btn btn-sm btn-light btn-copy" (click)="copyToClipboard(job)">
+    <i class="pi pi-copy"></i>
+  </button>
+  <div class="company-image">
+    <div
+      class="image"
+      style="background-image: url('{{ job.employerAvatar | imageUrl }}')"
+    ></div>
+  </div>
+  <div class="main-info" (click)="viewDetail()">
+    <div class="title">
+      {{ job.title }}
+    </div>
+    <div class="hot-tags hot-tags-mobile">
+      <div *ngIf="job.isHotJob" class="hot">
+        <div class="hot-star">
+          <i class="pi pi-star"></i>
+        </div>
+        <div class="hot-content">Hot Job</div>
+      </div>
+    </div>
+    <div class="company-name">
+      {{ job.employerFullname }}
+    </div>
+    <div class="other">
+      <div *ngIf="!!job.categoryNames" class="hot-star">
+        <i class="pi pi-tags"></i>
+        {{ job.categoryNames }}
+      </div>
+
+      <div *ngIf="!!job.salary" class="hot-star">
+        <i class="pi pi-dollar"></i>
+        {{ job.salary }}
+      </div>
+
+      <div *ngIf="!!job.jobTypeNames" class="hot-star">
+        <i class="pi pi-hourglass"></i>
+        {{ job.jobTypeNames }}
+      </div>
+
+      <div *ngIf="!!job.locationNames" class="hot-star">
+        <i class="pi pi-map-marker"></i>
+        {{ job.locationNames }}
+      </div>
+
+      <div *ngIf="!!job.skills && !!job.skills.length" class="skills" style="ursor: pointer">
+        <div *ngFor="let skill of job.skills" class="hot-star-skill mr-1">
+          {{ skill.code }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hot-tags hot-tags-full pr-5">
+    <div *ngIf="!!job.isHotJob" class="hot">
+      <div class="hot-star">
+        <i class="pi pi-star-fill"></i>
+      </div>
+      <div class="hot-content">Hot Job</div>
+    </div>
+  </div>
+</div>

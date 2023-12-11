@@ -1,0 +1,5 @@
+game-job/.angular/cache/*
+game-job/.vscode/extensions.json
+game-job/.vscode/launch.json
+game-job/.vscode/tasks.json
+game-job/node_modules/*

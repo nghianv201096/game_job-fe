@@ -1,0 +1,11 @@
+.card-container {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50vh;
+}
+
+.card-login {
+  width: 400px;
+}

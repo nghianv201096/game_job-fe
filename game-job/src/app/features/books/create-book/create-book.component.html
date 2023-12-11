@@ -1,0 +1,46 @@
+<form [formGroup]="form" (ngSubmit)="save()" class="col-md-6 offset-md-3">
+  <div>
+    <h1>Create book</h1>
+  </div>
+
+  <div class="form-group mb-2">
+    <label for="name">Name</label>
+    <input class="form-control" id="name" formControlName="name" />
+  </div>
+
+  <div class="form-group mb-2">
+    <label for="type">Type</label>
+    <p-dropdown
+      [options]="types"
+      class="form-control"
+      id="type"
+      formControlName="type"
+      optionLabel="name"
+      optionValue="code"
+    ></p-dropdown>
+  </div>
+
+  <div class="form-group mb-2">
+    <label for="author">Author</label>
+    <input class="form-control" id="author" formControlName="author" />
+  </div>
+
+  <div class="form-group mb-2">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="locked"
+      formControlName="locked"
+    />
+    <label class="form-check-label" for="locked">Locked</label>
+  </div>
+
+  <div class="d-flex justify-content-end mb-2">
+    <button type="submit" class="btn btn-primary me-1" [disabled]="!form.valid">
+      Submit
+    </button>
+    <a [routerLink]="['/books']" class="btn btn btn-outline-secondary">
+      <i class="pi pi-replay"></i> Back</a
+    >
+  </div>
+</form>

@@ -1,0 +1,133 @@
+<div class="container job-detail px-5">
+  <div class="d-flex justify-content-end pb-3">
+    <button (click)="back()" class="btn btn-light">
+      <i class="pi pi-undo"></i> Quay lại
+    </button>
+  </div>
+
+  <div *ngIf="job" class="row body">
+    <div class="col-md-9 col-sm-8 job-info">
+      <div class="current-job">
+        <div class="title-tags">
+          <div class="title">
+            <div class="content">
+              {{ job.title }}
+            </div>
+            <div *ngIf="job.isHotJob" class="hot">
+              <div class="hot-star">
+                <i class="pi pi-star"></i>
+              </div>
+              <div class="hot-content">Hot Job</div>
+            </div>
+          </div>
+
+          <div class="date-other">
+            <div class="created-date">
+              Posted:
+              <span class="font-weight-bold">{{ job.createdDate | date }}</span>
+            </div>
+
+            <div *ngIf="!!job.categoryNames" class="hot-star">
+              <i class="pi pi-tags"></i>
+              {{ job.categoryNames }}
+            </div>
+
+            <div *ngIf="job.salary" class="hot-star">
+              <i class="pi pi-dollar"></i>
+              {{ job.salary }}
+            </div>
+
+            <div *ngIf="job.jobTypeNames" class="hot-star">
+              <i class="pi pi-hourglass"></i>
+              {{ job.jobTypeNames }}
+            </div>
+
+            <div *ngIf="job.locationNames" class="hot-star">
+              <i class="pi pi-map-marker"></i>
+              {{ job.locationNames }}
+            </div>
+          </div>
+
+          <div class="skills" style="display: flex; cursor: pointer">
+            <div *ngFor="let skill of job.skills" class="hot-star mr-1">
+              {{ skill.code }}
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="description">
+            <div class="title">Giới thiệu</div>
+            <div class="content" [innerHTML]="job.introduction"></div>
+            <div class="title">Mô tả</div>
+            <div class="content" [innerHTML]="job.description"></div>
+            <div class="title">Yêu cầu</div>
+            <div class="content" [innerHTML]="job.requirement"></div>
+            <div class="title">Quyền lợi</div>
+            <div class="content" [innerHTML]="job.interests"></div>
+          </div>
+
+          <div class="apply-button-container">
+            <button
+              *ngIf="candidate.alreadyWhishedList; else notInWhishedList"
+              class="btn btn-success me-1"
+              disabled
+            >
+              <i class="pi pi-heart"></i>
+              Yêu thích
+            </button>
+
+            <ng-template #notInWhishedList>
+              <button (click)="like()" type="submit" class="btn btn-success me-1">
+                <i class="pi pi-heart"></i>
+                Yêu thích
+              </button>
+            </ng-template>
+
+            <button
+              *ngIf="candidate.alreadyApply; else notApply"
+              class="btn btn-danger"
+              disabled
+            >
+              Đã ứng tuyển
+            </button>
+
+            <ng-template #notApply>
+              <button (click)="apply()" class="btn btn-danger">
+                <i class="pi pi-send"></i> Ứng tuyển
+              </button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+      <div class="related-jobs related-jobs-full">
+        <app-job-related-list *ngIf="job" [id]="job.id"></app-job-related-list>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-4 employer-info-container">
+      <div class="employer-info">
+        <div class="image">
+          <img src="{{ creator.employerAvatar ?? '' | imageUrl }}" />
+        </div>
+        <div class="company-name">
+          <a [routerLink]="['/nha-tuyen-dung', job.id]">
+            {{ creator.employerFullname }}
+          </a>
+        </div>
+        <div class="web-site" style="display: block">
+          <a href="{{ creator.employerWebsite }}" target="_blank"
+            ><i class="pi pi-globe"></i>&nbsp;Website</a
+          >
+        </div>
+        <div class="address" style="display: block">
+          <i class="pi pi-map"></i>&nbsp;{{ creator.employerAddress }}
+        </div>
+        <div class="number-of-job" style="display: block">
+          <i class="pi pi-briefcase"></i>&nbsp;Đã đăng
+          {{ creator.totalOfJob }} bài
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

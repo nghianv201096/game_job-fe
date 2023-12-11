@@ -1,0 +1,63 @@
+<button (click)="goHome()" class="btn btn-primary">Go home</button>
+<hr/>
+<ol>
+    <li>Add a button</li>
+    <li>Add a paragraph</li>
+    <li>When click into button then toggle displaying the paragraph</li>
+    <li>Log click events to array and output them</li>
+    <li>Start from 5th log item, -> blue color through ngStyle and white background via ngClass</li>
+</ol>
+
+<hr/>
+<button (click)="onClick()" class="btn btn-primary">Add details</button>
+<hr/>
+<h1>Paragraph</h1>
+<p *ngIf="isShowParagraph"> Hi there, NghiaNV</p>
+<hr/>
+<h1>Events</h1>
+<p *ngFor="let event of events; let i=index;" 
+    [ngStyle]="getStyles(i)" 
+    [ngClass]="getClass(i)"> 
+    {{i+1}}. {{event}}
+</p>
+<hr/>
+<h1>NgModel</h1>
+<input [ngModel]="username" 
+    (ngModelChange)="changedUsername = $event" 
+    type="text"/>
+<br/>
+Value from TS: {{username}}
+<br/>
+Value from input: {{changedUsername}}
+
+<hr>
+<h1>*ngIf</h1>
+<input [(ngModel)]="checkValue" type="checkbox"/> Check me to see if
+<h1 *ngIf="checkValue; else fromElse">I'm from if</h1>
+<ng-template #fromElse>
+    <h2>I'm from else</h2>
+</ng-template>
+
+<hr>
+<h1>*ngFor</h1>
+<ul>
+    <li *ngFor="let person of people; index as i; trackBy: trackByFn">
+        {{i + 1}} - {{person.name}}
+    </li>
+</ul>
+
+<hr>
+<h1>[ngSwitch]</h1>
+<ul>
+    <li>one -> *</li>
+    <li>two -> **</li>
+    <li>three -> ***</li>
+    <li>other -> N/A</li>
+</ul>
+<input [(ngModel)]="switchValue"/>
+<div [ngSwitch]="switchValue">
+    <div *ngSwitchCase="'one'">*</div>
+    <div *ngSwitchCase="'two'">**</div>
+    <div *ngSwitchCase="'three'">***</div>
+    <div *ngSwitchDefault>N/A</div>
+</div>

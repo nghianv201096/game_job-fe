@@ -1,0 +1,76 @@
+<h1>Book List</h1>
+
+<div class="row mb-2">
+  <div class="col-4">
+    <input
+      [(ngModel)]="searchData.bookName"
+      type="text"
+      class="form-control"
+      id="Name"
+      placeholder="Book name"
+      style="max-width: 300px"
+    />
+  </div>
+  <div class="col-8 p-1 d-flex justify-content-end">
+    <a [routerLink]="['./create']" class="btn btn-sm btn-success me-1">
+      <i class="pi pi-plus"></i>
+      Create</a
+    >
+    <button class="btn btn-sm btn-outline-secondary" (click)="reload()">
+      <i class="pi pi-replay"></i>
+      Reload
+    </button>
+  </div>
+</div>
+
+<p-table
+  [value]="books"
+  [paginator]="true"
+  [rows]="5"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[5, 20, 50]"
+  styleClass="p-datatable-striped"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Author</th>
+      <th>Locked</th>
+      <th style="width: 300px">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-book let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{ book.name }}</td>
+      <td>{{ book.type | enumDescription : bookTypes }}</td>
+      <td>{{ book.author }}</td>
+      <td>
+        <p-checkbox
+          [(ngModel)]="book.locked"
+          [binary]="true"
+          inputId="binary"
+          [disabled]="true"
+        ></p-checkbox>
+      </td>
+      <td>
+        <a
+          [routerLink]="['./view', book.id]"
+          class="btn btn-sm btn-outline-primary me-1"
+          ><i class="pi pi-eye"></i> View</a
+        >
+        <a
+          [routerLink]="['./update', book.id]"
+          class="btn btn-sm btn-outline-warning me-1"
+          ><i class="pi pi-pencil"></i> Update</a
+        >
+        <button (click)="delete(book.id)" class="btn btn-sm btn-outline-danger">
+          <i class="pi pi-times"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

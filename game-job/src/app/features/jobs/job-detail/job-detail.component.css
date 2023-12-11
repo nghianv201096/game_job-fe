@@ -1,0 +1,149 @@
+
+/* Job details.
+-------------------------------------------------- */
+.job-detail {
+}
+
+.job-detail .buttons {
+  padding: 1em 0 2em 1em;
+}
+
+.job-detail .body {
+}
+
+.job-detail .body .job-info {
+}
+
+.job-detail .body .job-info > div {
+  border-radius: 5px;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+  border: 1px solid #ddd;
+  padding: 1em;
+}
+
+.job-detail .body .job-info .current-job {
+  margin-bottom: 2em;
+  background-color: var(--cl-white);
+  color: var(--cl-black);
+}
+
+.job-detail .body .job-info .current-job .title-tags {
+}
+
+.job-detail .body .job-info .current-job .title-tags .title {
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.job-detail .body .job-info .current-job .title-tags .title .content {
+  font-size: 30px;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.job-detail .body .job-info .current-job .title-tags .title .hot {
+  background-color: yellow;
+  border-radius: 5px;
+  min-width: 95px;
+  padding: 3px 5px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  color: var(--cl-black);
+}
+
+.job-detail .body .job-info .current-job .title-tags .hot .hot-star {
+  flex: 0 0 30px;
+}
+
+.job-detail .body .job-info .current-job .title-tags .hot .hot-content {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.job-detail .body .job-info related-jobs {
+}
+
+.job-detail .body .job-info .current-job .title-tags .date-other {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.job-detail .body .job-info .current-job .title-tags .date-other .hot-star {
+  margin-left: 1em;
+}
+
+.job-detail .body .job-info .current-job .title-tags .skills {
+  margin-bottom: 10px;
+  color: var(--cl-black);
+}
+
+.job-detail .body .job-info .current-job .title-tags .skills .hot-star {
+  background-color: yellow;
+  border-radius: 290486px;
+  padding: 3px 8px;
+  font-size: 14px;
+  display: inline-block;
+  border: 1px solid #ddd;
+  margin-right: 0.5rem;
+}
+
+.job-detail .body .employer-info {
+  border-radius: 5px;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+  border: 1px solid #ddd;
+  padding: 1em;
+  height: fit-content;
+  background-color: var(--cl-white);
+  color: var(--cl-black);
+}
+
+.job-detail .body .employer-info a {
+  color: var(--cl-black) !important;
+}
+
+.job-detail .body .employer-info > div {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.job-detail .body .employer-info .image {
+  margin-bottom: 10px;
+}
+
+.job-detail .body .employer-info .image > img {
+  height: 160px;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.job-detail .body .employer-info .company-name a {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.job-detail .body .job-info .current-job .title-tags .description {
+  padding-bottom: 2em;
+}
+
+.job-detail .body .job-info .current-job .title-tags .description .title {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 0px;
+}
+
+.job-detail .body .job-info .current-job .title-tags .description .content {
+  padding-bottom: 10px;
+}
+
+.related-jobs {
+  background: var(--cl-white);
+  color: var(--cl-white);
+}

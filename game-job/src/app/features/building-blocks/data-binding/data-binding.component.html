@@ -1,0 +1,16 @@
+<hr/>
+<h1>Requirements</h1>
+<ol>
+    <li>Add an input with <b>two-way binding</b> for <b>Username</b></li>
+    <li>Bind <b>Username</b> to UI with <b>String interpolation</b></li>
+    <li>Add button that when click then reset value of <b>Username</b> and disabled when no value for Username</li>
+</ol>
+
+<hr/>
+<h1>Sample code</h1>
+Input username: <input [(ngModel)]="username" (ngModelChange)="usernameChanged($event)">
+<br/>
+username: {{username}}
+<br/>
+<button (click)="addUsername()" [disabled]="!username" class="btn btn-primary">Add</button>
+<hr/>

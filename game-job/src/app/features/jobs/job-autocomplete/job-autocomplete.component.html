@@ -1,0 +1,34 @@
+<div class="autocomplete-container">
+  <p-dropdown
+    [style]="{ minWidth: '100%' }"
+    class="autocomplete-dropdown"
+    [options]="locations"
+    [(ngModel)]="data.locationId"
+    placeholder="Tất cả thành phố"
+    optionLabel="code"
+    optionValue="id"
+    [showClear]="true"
+  >
+    <ng-template pTemplate="dropdownicon">
+      <span class="pi pi-map-marker"></span>
+    </ng-template>
+  </p-dropdown>
+
+  <ng-select
+    class="autocomplete-input"
+    [items]="autocompleteOptions"
+    bindLabel="code"
+    bindValue="id"
+    [multiple]="true"
+    placeholder="Unity, C#, Spine,..."
+    [(ngModel)]="data.classifications"
+    [appendTo]="'body'"
+    [maxSelectedItems]="3"
+  >
+  </ng-select>
+
+  <button class="btn btn-sm btn-danger autocomplete-button" (click)="search()">
+    <span class="pi pi-search"></span>
+    Tìm việc
+  </button>
+</div>
