@@ -56,6 +56,7 @@ import { JobRelatedListComponent } from './features/jobs/job-related-list/job-re
 import { ImagePipe } from './pipes/image.pipe';
 import { OverlaySpinnerComponent } from './features/overlay-spinner/overlay-spinner.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import {EditorModule} from 'primeng/editor';
 
 @NgModule({
   declarations: [
@@ -113,6 +114,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     ToastModule,
     NgSelectModule,
     ProgressSpinnerModule,
+    EditorModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreModule.forFeature('bookStore', bookReducer),

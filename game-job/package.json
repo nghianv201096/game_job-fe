@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "game-jobs",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -29,6 +29,7 @@
     "primeicons": "^6.0.1",
     "primeng": "^16.4.1",
     "protractor": "^7.0.0",
+    "quill": "^1.3.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

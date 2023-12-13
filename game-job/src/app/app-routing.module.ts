@@ -20,6 +20,7 @@ import { AuthGuard } from './services/auth.guard';
 import { AccessDeniedComponent } from './features/access-denied/access-denied.component';
 import { JobListComponent } from './features/jobs/job-list/job-list.component';
 import { JobDetailComponent } from './features/jobs/job-detail/job-detail.component';
+import { JobUpsertComponent } from './features/jobs/job-upsert/job-upsert.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'tin-tuyen-dung/chi-tiet/:id',
     component: JobDetailComponent,
+  },
+  {
+    path: 'tin-tuyen-dung/thao-tac/:id',
+    component: JobUpsertComponent,
   },
   {
     path: 'profile',

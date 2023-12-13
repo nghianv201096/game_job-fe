@@ -4,6 +4,7 @@ import { JobService } from 'src/app/services/job.service';
 import { JobAutocompleteComponent } from '../job-autocomplete/job-autocomplete.component';
 import { CommonService } from 'src/app/services/common.service';
 import { finalize } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-list',
@@ -18,7 +19,8 @@ export class JobListComponent implements OnInit {
 
   constructor(
     private jobService: JobService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +46,6 @@ export class JobListComponent implements OnInit {
   copyToClipboard(job: JobDto) {}
 
   createJob() {
-    this.commonService.showNotImplement();
+    this.router.navigate(['/tin-tuyen-dung','thao-tac',0]);
   }
 }

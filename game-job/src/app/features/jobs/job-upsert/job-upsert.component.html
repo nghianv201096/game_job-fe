@@ -1,1 +1,158 @@
-<p>job-upsert works!</p>
+<form
+  [formGroup]="form"
+  (ngSubmit)="save()"
+  class="row g-3 col-md-8 offset-md-2"
+>
+  <h2>{{ title }}</h2>
+  <div *ngIf="isUpdate" class="col-12">
+    <label class="form-label">Mã</label>
+    <input
+      type="text"
+      class="form-control"
+      id="code"
+      formControlName="code"
+      [disabled]="true"
+    />
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Tiêu đề vị trí</label>
+    <input
+      type="text"
+      class="form-control"
+      id="title"
+      formControlName="title"
+    />
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Vị trí</label>
+    <ng-select
+      [items]="categories"
+      bindLabel="code"
+      bindValue="id"
+      [multiple]="false"
+      id="categoryId"
+      formControlName="categoryId"
+      [appendTo]="'body'"
+    >
+    </ng-select>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Địa điểm</label>
+    <ng-select
+      [items]="locations"
+      bindLabel="code"
+      bindValue="id"
+      [multiple]="false"
+      id="locationId"
+      formControlName="locationId"
+      [appendTo]="'body'"
+    >
+    </ng-select>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Loại công việc</label>
+    <ng-select
+      [items]="jobTypes"
+      bindLabel="code"
+      bindValue="id"
+      [multiple]="false"
+      id="jobTypeId"
+      formControlName="jobTypeId"
+      [appendTo]="'body'"
+    >
+    </ng-select>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Kỹ năng</label>
+    <ng-select
+      [items]="skills"
+      bindLabel="code"
+      bindValue="id"
+      [multiple]="true"
+      placeholder="Unity, C#, Spine,..."
+      id="skillIds"
+      formControlName="skillIds"
+      [appendTo]="'body'"
+      [maxSelectedItems]="3"
+    >
+    </ng-select>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Mức lương</label>
+    <input
+      type="text"
+      class="form-control"
+      id="salary"
+      formControlName="salary"
+    />
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Trạng thái</label>
+    <ng-select
+      [items]="statuses"
+      bindLabel="code"
+      bindValue="id"
+      [multiple]="false"
+      id="status"
+      formControlName="status"
+      [appendTo]="'body'"
+      [disabled]="true"
+    >
+    </ng-select>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Giới thiệu</label>
+    <p-editor
+      id="introduction"
+      formControlName="introduction"
+      [style]="{ height: '120px' }"
+    ></p-editor>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Mô tả</label>
+    <p-editor
+      id="description"
+      formControlName="description"
+      [style]="{ height: '120px' }"
+    ></p-editor>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Yêu cầu</label>
+    <p-editor
+      id="requirement"
+      formControlName="requirement"
+      [style]="{ height: '120px' }"
+    ></p-editor>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Quyền lợi</label>
+    <p-editor
+      id="interests"
+      formControlName="interests"
+      [style]="{ height: '120px' }"
+    ></p-editor>
+  </div>
+
+  <div class="col-12 d-flex justify-content-end">
+    <button type="submit" class="btn btn-success me-1">
+      <i class="pi pi-save"></i> Lưu
+    </button>
+    <button (click)="delete()" *ngIf="isUpdate" type="button" class="btn btn-danger me-1">
+      <i class="pi pi-trash"></i> Xóa
+    </button>
+    <button (click)="back()" type="button" class="btn btn-light">
+      <i class="pi pi-undo"></i> Quay lại
+    </button>
+  </div>
+</form>
