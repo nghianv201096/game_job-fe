@@ -37,6 +37,9 @@ export class JobDetailComponent {
       this.id = params['id'];
       this.getData();
     });
+    this.activatedRoute.data.subscribe((rs) => {
+      this.isPreview = rs['isPreview'];
+    });
   }
 
   getData() {

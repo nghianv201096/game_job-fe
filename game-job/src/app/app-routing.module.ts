@@ -20,7 +20,8 @@ import { AuthGuard } from './services/auth.guard';
 import { AccessDeniedComponent } from './features/access-denied/access-denied.component';
 import { JobListComponent } from './features/jobs/job-list/job-list.component';
 import { JobDetailComponent } from './features/jobs/job-detail/job-detail.component';
-import { JobUpsertComponent } from './features/jobs/job-upsert/job-upsert.component';
+import { JobUpsertComponent } from './features/job-management/job-upsert/job-upsert.component';
+import { JobManagementListComponent } from './features/job-management/job-management-list/job-management-list.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,20 @@ const routes: Routes = [
   {
     path: 'tin-tuyen-dung/chi-tiet/:id',
     component: JobDetailComponent,
+    data: {
+      isPreview: false,
+    },
+  },
+  {
+    path: 'tin-tuyen-dung/preview/:id',
+    component: JobDetailComponent,
+    data: {
+      isPreview: true,
+    },
+  },
+  {
+    path: 'tin-tuyen-dung',
+    component: JobManagementListComponent,
   },
   {
     path: 'tin-tuyen-dung/thao-tac/:id',

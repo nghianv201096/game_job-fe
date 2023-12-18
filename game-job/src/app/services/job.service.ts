@@ -6,6 +6,7 @@ import { MethodResult } from '../models/api-response.dto';
 import { JobDto } from '../models/jobs/job.dto';
 import { JobDetailDto } from '../models/jobs/job-detail.dto';
 import { JobUpsertDto } from '../models/jobs/job-upsert.dto';
+import { JobManagementDto } from '../models/jobs/job-management.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,12 @@ export class JobService {
   getJobForUpsert(id: number): Observable<MethodResult<JobUpsertDto>> {
     return this.http.get<MethodResult<JobUpsertDto>>(
       `${this.apiUrl}/ViewJobForUpsert/${id}`
+    );
+  }
+
+  getJobsForManangement(): Observable<MethodResult<JobManagementDto[]>> {
+    return this.http.get<MethodResult<JobManagementDto[]>>(
+      `${this.apiUrl}/ViewJobsForManangement`
     );
   }
 

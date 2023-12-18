@@ -1,8 +1,11 @@
 <div class="container job-detail px-5">
   <div class="d-flex justify-content-end pb-3">
-    <button (click)="back()" class="btn btn-light">
+    <button *ngIf="!isPreview" (click)="back()" class="btn btn-light">
       <i class="pi pi-undo"></i> Quay lại
     </button>
+    <a *ngIf="isPreview" [routerLink]="['/tin-tuyen-dung']" class="btn btn-light">
+      <i class="pi pi-undo"></i> Quay lại
+    </a>
   </div>
 
   <div *ngIf="job" class="row body">
@@ -11,7 +14,7 @@
         <div class="title-tags">
           <div class="title">
             <div class="content">
-              {{ job.title }}
+              {{ isPreview ? '(PREVIEW)' + job.title : job.title}}
             </div>
             <div *ngIf="job.isHotJob" class="hot">
               <div class="hot-star">
@@ -69,7 +72,7 @@
 
           <div class="apply-button-container">
             <button
-              *ngIf="candidate.alreadyWhishedList; else notInWhishedList"
+              *ngIf="candidate.alreadyWhishedList || isPreview; else notInWhishedList"
               class="btn btn-success me-1"
               disabled
             >
@@ -78,14 +81,18 @@
             </button>
 
             <ng-template #notInWhishedList>
-              <button (click)="like()" type="submit" class="btn btn-success me-1">
+              <button
+                (click)="like()"
+                type="submit"
+                class="btn btn-success me-1"
+              >
                 <i class="pi pi-heart"></i>
                 Yêu thích
               </button>
             </ng-template>
 
             <button
-              *ngIf="candidate.alreadyApply; else notApply"
+              *ngIf="candidate.alreadyApply || isPreview; else notApply"
               class="btn btn-danger"
               disabled
             >

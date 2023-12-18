@@ -151,8 +151,8 @@
     <button (click)="delete()" *ngIf="isUpdate" type="button" class="btn btn-danger me-1">
       <i class="pi pi-trash"></i> Xóa
     </button>
-    <button (click)="back()" type="button" class="btn btn-light">
+    <a [routerLink]="['/tin-tuyen-dung']" type="button" class="btn btn-light">
       <i class="pi pi-undo"></i> Quay lại
-    </button>
+    </a>
   </div>
 </form>

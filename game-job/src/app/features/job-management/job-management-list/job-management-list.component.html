@@ -1,0 +1,71 @@
+<div class="p-5">
+  <h2>Danh sách tin tuyển dụng</h2>
+
+  <div class="row mb-2">
+    <div class="col-4"></div>
+    <div class="col-8 p-1 d-flex justify-content-end">
+      <a
+        [routerLink]="['/tin-tuyen-dung', 'thao-tac', 0]"
+        class="btn btn-sm btn-success me-1"
+      >
+        <i class="pi pi-plus"></i>
+        Tạo mới</a
+      >
+      <button class="btn btn-sm btn-info me-1" (click)="reload()">
+        <i class="pi pi-refresh"></i>
+        Làm mới
+      </button>
+      <a [routerLink]="['/']" class="btn btn-sm btn-light">
+        <i class="pi pi-replay"></i>
+        Quay lại
+      </a>
+    </div>
+  </div>
+
+  <p-table
+    [value]="jobs"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Hiển thị từ {first} tới {last} của {totalRecords} bản ghi"
+    [rowsPerPageOptions]="[10, 20, 50]"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>STT</th>
+        <th>Mã</th>
+        <th>Tiêu đề vị trí</th>
+        <th>Trạng thái</th>
+        <th>Thời gian hiển thị</th>
+        <th style="width: 250px">Thao tác</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-job let-rowIndex="rowIndex">
+      <tr>
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ job.code }}</td>
+        <td>{{ job.title }}</td>
+        <td>{{ job.status | enumDescription : statuses }}</td>
+        <td *ngIf="job.status == 2; else notApproved">
+          Từ {{ job.from | date }} đến {{ job.to | date }}
+        </td>
+        <ng-template #notApproved>
+          <td>N/A</td>
+        </ng-template>
+        <td>
+          <a
+            [routerLink]="['/tin-tuyen-dung', 'preview', job.id]"
+            class="btn btn-sm btn-outline-primary me-1"
+            ><i class="pi pi-eye"></i> Xem trước</a
+          >
+          <a
+            [routerLink]="['/tin-tuyen-dung', 'thao-tac', job.id]"
+            class="btn btn-sm btn-outline-warning me-1"
+            ><i class="pi pi-pencil"></i> Chỉnh sửa</a
+          >
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

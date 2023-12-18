@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClassificationSourceDto } from 'src/app/models/classification/classification-source.dto';
 import { ClassificationService } from 'src/app/services/classification.service';
-import { ClassificationEnum } from '../job-autocomplete/job-autocomplete.component';
+import { ClassificationEnum } from '../../jobs/job-autocomplete/job-autocomplete.component';
 import { JobStatusEnum } from 'src/app/enums/job-status.enum';
 import { JobService } from 'src/app/services/job.service';
 import { ConfirmationService, MessageService } from 'primeng/api';

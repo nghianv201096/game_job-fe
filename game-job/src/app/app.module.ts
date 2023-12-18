@@ -42,7 +42,7 @@ import { AccessDeniedComponent } from './features/access-denied/access-denied.co
 import { JobListComponent } from './features/jobs/job-list/job-list.component';
 import { JobListItemComponent } from './features/jobs/job-list-item/job-list-item.component';
 import { JobDetailComponent } from './features/jobs/job-detail/job-detail.component';
-import { JobUpsertComponent } from './features/jobs/job-upsert/job-upsert.component';
+import { JobUpsertComponent } from './features/job-management/job-upsert/job-upsert.component';
 import { EmployeeListComponent } from './features/employees/employee-list/employee-list.component';
 import { EmployeeDetailComponent } from './features/employees/employee-detail/employee-detail.component';
 import { EmployerListComponent } from './features/employers/employer-list/employer-list.component';
@@ -57,6 +57,7 @@ import { ImagePipe } from './pipes/image.pipe';
 import { OverlaySpinnerComponent } from './features/overlay-spinner/overlay-spinner.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import {EditorModule} from 'primeng/editor';
+import { JobManagementListComponent } from './features/job-management/job-management-list/job-management-list.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import {EditorModule} from 'primeng/editor';
     FooterComponent,
     JobRelatedListComponent,
     ImagePipe,
-    OverlaySpinnerComponent
+    OverlaySpinnerComponent,
+    JobManagementListComponent
   ],
   imports: [
     BrowserModule,
