@@ -16,7 +16,10 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex align-items-end" id="navbarSupportedContent">
+    <div
+      class="collapse navbar-collapse d-flex align-items-end"
+      id="navbarSupportedContent"
+    >
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li
           *ngFor="let classification of classifications"
@@ -34,29 +37,94 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li *ngFor="let item of classification.items">
-              <a class="dropdown-item" href="#" (click)="searchClassification({type: classification.type, id: item.id})">{{ item.name }}</a>
+              <a
+                class="dropdown-item"
+                href="#"
+                (click)="
+                  searchClassification({
+                    type: classification.type,
+                    id: item.id
+                  })
+                "
+                >{{ item.name }}</a
+              >
             </li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/tin-tuyen-dung']">Tin tuyển dụng</a>
+
+        <li *ngIf="isAdmin || isEmployer" class="nav-item">
+          <a class="nav-link" [routerLink]="['/tin-tuyen-dung']"
+            >Tin tuyển dụng</a
+          >
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/nha-tuyen-dung']">Nhà tuyển dụng</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/ung-vien']">Ứng viên</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/ban-goi-dang']">Bán gói đăng</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/bai-dang-blog']">Bài đăng Blog</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/blog']">Blog</a>
-        </li> -->
+
+        <ng-container *ngIf="isAdmin">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/nha-tuyen-dung']"
+              >Nhà tuyển dụng</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/ung-vien']">Ứng viên</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/bai-dang-blog']"
+              >Bài đăng Blog</a
+            >
+          </li> -->
+        </ng-container>
+
+        <ng-container *ngIf="isCandidate">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/ung-tuyen/danh-sach']"
+              >Ứng tuyển</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/yeu-thich']"
+              >Yêu thích</a
+            >
+          </li>
+        </ng-container>
       </ul>
+      <div class="d-flex">
+        <!-- <a class="nav-link m-2" [routerLink]="['/blog']">Blog</a> -->
+
+        <a
+          *ngIf="isUserAuthenticated && user"
+          [routerLink]="['/profile']"
+          class="nav-link m-2"
+        >
+          <i class="pi pi-user"></i> Hi {{ user.fullname }}!
+        </a>
+
+        <a
+          *ngIf="!isUserAuthenticated"
+          type="button"
+          [routerLink]="['/dang-ky']"
+          class="btn btn-sm btn-warning m-2"
+        >
+          <i class="pi pi-user-plus"></i> Đăng ký
+        </a>
+
+        <a
+          *ngIf="!isUserAuthenticated"
+          type="button"
+          [routerLink]="['/dang-nhap']"
+          class="btn btn-sm btn-danger m-2"
+        >
+          <i class="pi pi pi-sign-in"></i> Đăng nhập
+        </a>
+
+        <button
+          *ngIf="isUserAuthenticated"
+          type="button"
+          class="btn btn-sm btn-danger"
+          (click)="logout()"
+        >
+          <i class="pi pi-sign-out"></i> Đăng xuất
+        </button>
+      </div>
     </div>
   </div>
 </nav>

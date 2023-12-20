@@ -7,6 +7,8 @@ import { JobDto } from '../models/jobs/job.dto';
 import { JobDetailDto } from '../models/jobs/job-detail.dto';
 import { JobUpsertDto } from '../models/jobs/job-upsert.dto';
 import { JobManagementDto } from '../models/jobs/job-management.dto';
+import { JobSummaryForEmployerDto } from '../models/jobs/job-summary-for-employer.dto';
+import { JobSummaryForCandidateDto } from '../models/jobs/job-summary-for-candidate.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +43,18 @@ export class JobService {
     );
   }
 
+  viewJobSummaryForEmployers(): Observable<MethodResult<JobSummaryForEmployerDto[]>> {
+    return this.http.get<MethodResult<JobSummaryForEmployerDto[]>>(
+      `${this.apiUrl}/ViewJobSummaryForEmployers`
+    );
+  }
+
+  viewJobSummaryForCandidates(): Observable<MethodResult<JobSummaryForCandidateDto[]>> {
+    return this.http.get<MethodResult<JobSummaryForCandidateDto[]>>(
+      `${this.apiUrl}/ViewJobSummaryForCandidates`
+    );
+  }
+
   getRelatedJobs(id: number): Observable<MethodResult<JobDto[]>> {
     return this.http.get<MethodResult<JobDto[]>>(
       `${this.apiUrl}/ViewRelatedJobs/${id}`
@@ -64,6 +78,27 @@ export class JobService {
   deleteJob(id: number): Observable<MethodResult<string>> {
     return this.http.delete<MethodResult<string>>(
       `${this.apiUrl}/deleteJob/${id}`
+    );
+  }
+
+  submitJob(id: number): Observable<MethodResult<string>> {
+    return this.http.put<MethodResult<string>>(
+      `${this.apiUrl}/SubmitJob/${id}`,
+      {}
+    );
+  }
+
+  hideJob(id: number): Observable<MethodResult<string>> {
+    return this.http.put<MethodResult<string>>(
+      `${this.apiUrl}/HideJob/${id}`,
+      {}
+    );
+  }
+
+  approveJob(id: number, model: any): Observable<MethodResult<string>> {
+    return this.http.put<MethodResult<string>>(
+      `${this.apiUrl}/ApproveJob/${id}`,
+      model
     );
   }
 }

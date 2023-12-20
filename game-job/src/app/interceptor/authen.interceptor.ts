@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private authenService: AuthenticationService,
     private router: Router,
-    private activatedRoute : ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
@@ -38,10 +38,12 @@ export class AuthInterceptor implements HttpInterceptor {
           switch (error.status) {
             case 401:
             case 403:
-              this.authenService.setAuthenticationInfo(undefined);
-              this.router.navigateByUrl('/login');
-              handled = true;
-              break;
+              if (error.url?.indexOf('/login') == -1) {
+                this.authenService.setAuthenticationInfo(undefined);
+                this.router.navigateByUrl('/login');
+                handled = true;
+                break;
+              }
           }
         }
 

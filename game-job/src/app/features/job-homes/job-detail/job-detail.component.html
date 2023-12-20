@@ -3,7 +3,28 @@
     <button *ngIf="!isPreview" (click)="back()" class="btn btn-light">
       <i class="pi pi-undo"></i> Quay lại
     </button>
-    <a *ngIf="isPreview" [routerLink]="['/tin-tuyen-dung']" class="btn btn-light">
+    <button *ngIf="canHide()" (click)="hide()" class="btn btn-warning me-2">
+      <i class="pi pi-send"></i> Gỡ tin
+    </button>
+
+    <button *ngIf="canSubmit()" (click)="submit()" class="btn btn-warning me-2">
+      <i class="pi pi-send"></i> Trình đăng
+    </button>
+    <button
+      *ngIf="canApprove()"
+      (click)="displayApprove()"
+      class="btn btn-success me-2"
+    >
+      <i class="pi pi-check"></i> Duyệt đăng
+    </button>
+    <button *ngIf="!isPreview" (click)="back()" class="btn btn-light">
+      <i class="pi pi-undo"></i> Quay lại
+    </button>
+    <a
+      *ngIf="isPreview"
+      [routerLink]="['/tin-tuyen-dung']"
+      class="btn btn-light"
+    >
       <i class="pi pi-undo"></i> Quay lại
     </a>
   </div>
@@ -14,7 +35,7 @@
         <div class="title-tags">
           <div class="title">
             <div class="content">
-              {{ isPreview ? '(PREVIEW)' + job.title : job.title}}
+              {{ isPreview ? "(PREVIEW)" + job.title : job.title }}
             </div>
             <div *ngIf="job.isHotJob" class="hot">
               <div class="hot-star">
@@ -72,7 +93,10 @@
 
           <div class="apply-button-container">
             <button
-              *ngIf="candidate.alreadyWhishedList || isPreview; else notInWhishedList"
+              *ngIf="
+                candidate.alreadyWhishedList || isPreview;
+                else notInWhishedList
+              "
               class="btn btn-success me-1"
               disabled
             >
@@ -138,3 +162,65 @@
     </div>
   </div>
 </div>
+
+<p-dialog
+  header="Duyệt đăng tin tuyển dụng"
+  [(visible)]="showApprove"
+  [modal]="true"
+  [closable]="true"
+  (onHide)="closeApprove()"
+  [style]="{ width: '500px' }"
+>
+  <div class="form-group mb-2">
+    <label for="fromDate">Ngày bắt đầu:</label>
+    <p-calendar
+      id="fromDate"
+      name="fromDate"
+      [(ngModel)]="approveModel.fromDate"
+      [showIcon]="true"
+      appendTo="body"
+    ></p-calendar>
+  </div>
+
+  <div class="form-group mb-2">
+    <label for="duration">Số ngày hiển thị:</label>
+    <input
+      type="number"
+      id="duration"
+      name="duration"
+      [(ngModel)]="approveModel.duration"
+      class="form-control"
+      required
+    />
+  </div>
+
+  <div class="form-check mb-2">
+    <input
+      type="checkbox"
+      id="isHotJob"
+      name="isHotJob"
+      [(ngModel)]="approveModel.isHotJob"
+      class="form-check-input"
+    />
+    <label for="isHotJob" class="form-check-label">Is Hot job</label>
+  </div>
+
+  <div class="ui-dialog-buttonpane p-clearfix d-flex justify-content-end">
+    <button
+      class="btn btn-default me-2"
+      type="button"
+      pButton
+      icon="pi pi-times"
+      (click)="closeApprove()"
+      label="Bỏ qua"
+    ></button>
+    <button
+      class="btn btn-success"
+      type="button"
+      pButton
+      icon="pi pi-check"
+      (click)="approve()"
+      label="Duyệt"
+    ></button>
+  </div>
+</p-dialog>

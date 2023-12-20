@@ -14,14 +14,16 @@ import { NgrxBookListComponent } from './features/books-with-ngrx/book-list/book
 import { NgrxCreateBookComponent } from './features/books-with-ngrx/create-book/create-book.component';
 import { NgrxUpdateBookComponent } from './features/books-with-ngrx/update-book/update-book.component';
 import { NgrxViewBookComponent } from './features/books-with-ngrx/view-book/view-book.component';
-import { ParamComponent } from './features/building-blocks/param/param.component';
-import { LoginComponent } from './features/login/login.component';
+import { LoginComponent } from './features/accounts/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { AccessDeniedComponent } from './features/access-denied/access-denied.component';
-import { JobListComponent } from './features/jobs/job-list/job-list.component';
-import { JobDetailComponent } from './features/jobs/job-detail/job-detail.component';
-import { JobUpsertComponent } from './features/job-management/job-upsert/job-upsert.component';
-import { JobManagementListComponent } from './features/job-management/job-management-list/job-management-list.component';
+import { JobListComponent } from './features/job-homes/job-list/job-list.component';
+import { JobDetailComponent } from './features/job-homes/job-detail/job-detail.component';
+import { JobUpsertComponent } from './features/job-managements/job-upsert/job-upsert.component';
+import { JobManagementListComponent } from './features/job-managements/job-management-list/job-management-list.component';
+import { RegisterComponent } from './features/accounts/register/register.component';
+import { EmployerListComponent } from './features/accounts/employers/employer-list/employer-list.component';
+import { CandidateListComponent } from './features/accounts/candidates/candidate-list/employer-list.component';
 
 const routes: Routes = [
   {
@@ -119,8 +121,20 @@ const routes: Routes = [
 
   // Authenticated
   {
-    path: 'login',
+    path: 'dang-nhap',
     component: LoginComponent,
+  },
+  {
+    path: 'dang-ky',
+    component: RegisterComponent,
+  },
+  {
+    path: 'nha-tuyen-dung',
+    component: EmployerListComponent,
+  },
+  {
+    path: 'ung-vien',
+    component: CandidateListComponent,
   },
   {
     path: 'access-denied',

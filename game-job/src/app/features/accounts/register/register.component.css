@@ -1,0 +1,34 @@
+:root {
+    --cl-black: #101317;
+    --cl-red: #bd081c;
+    --cl-grey: #36404D;
+    --cl-light-black: #252b35;
+    --cl-yellow: #ffee00;
+    --cl-blue: #00a2e2;
+    --cl-white: #ffffff;
+    --fs-medium: 14px;
+    --fs-large: 14px;
+    --fs-small: 11px;
+    --fs-extreme-large: 20px;
+    --fw-medium: 500;
+    --fw-large: 700;
+    --fw-small: 400;
+  }
+  
+  .card-container {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50vh;
+  }
+  
+  .card-login {
+    width: 500px;
+    background-color: var(--cl-grey);
+    border-radius: 5px;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    color: white !important;
+  }
+  

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { MethodResult } from '../models/api-response.dto';
 import { CreatorJobDetail } from '../models/authentication/creator-job-detail.dto';
 import { CandidateJobDetail } from '../models/authentication/candidate-job-detail.dto';
+import { UserByRoleDto } from '../models/users/user-by-role.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,18 @@ export class UserService {
   getCandiateJobDetail(): Observable<MethodResult<CandidateJobDetail>> {
     return this.http.get<MethodResult<CandidateJobDetail>>(
       `${this.apiUrl}/ViewCandidateJobDetail`
+    );
+  }
+
+  ViewCandidates(): Observable<MethodResult<UserByRoleDto[]>> {
+    return this.http.get<MethodResult<UserByRoleDto[]>>(
+      `${this.apiUrl}/ViewCandidates`
+    );
+  }
+
+  ViewEmployers(): Observable<MethodResult<UserByRoleDto[]>> {
+    return this.http.get<MethodResult<UserByRoleDto[]>>(
+      `${this.apiUrl}/ViewEmployers`
     );
   }
 }

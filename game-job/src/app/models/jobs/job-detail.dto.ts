@@ -15,4 +15,5 @@ export class JobDetailDto {
     description?:string;
     requirement?:string;
     interests?:string;
+    status?:number;
 }

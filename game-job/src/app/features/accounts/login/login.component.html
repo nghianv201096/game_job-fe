@@ -1,0 +1,53 @@
+<div class="card-container">
+  <div class="card card-login">
+    <div class="card-body">
+      <h1 class="card-title">Đăng nhập</h1>
+
+      <div>
+        <div class="row py-3">
+          <label for="email" class="col-form-label col-sm-3">Email</label>
+          <div class="col-md-9">
+            <input
+              type="text"
+              id="email"
+              name="email"
+              [(ngModel)]="user.email"
+              required
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="row py-3">
+          <label for="password" class="col-form-label col-sm-3">Mật khẩu</label>
+          <div class="col-md-9">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="user.password"
+              required
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="row py-3" *ngIf="isDevelopment">
+          <ul>
+            <li>Admin: Admin@gamejobs.outlook.com.vn</li>
+            <li>Employer: Employer@gamejobs.outlook.com.vn/Admin</li>
+            <li>Employee: Employee@gamejobs.outlook.com.vn</li>
+            <li>Pass: Admin@123456</li>
+          </ul>
+        </div>
+        <div class="row py-3">
+          <a [routerLink]="['/dang-ky']" class="btn btn-warning col-5">
+            <span class="pi pi-user-plus"></span>
+            Đăng ký</a
+          >
+          <button (click)="loginUser()" class="btn btn-danger col-5 offset-2">
+            <span class="pi pi-sign-in"></span> Đăng nhập
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

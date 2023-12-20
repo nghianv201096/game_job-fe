@@ -1,0 +1,50 @@
+<div class="p-5">
+  <h2>Danh sách nhà tuyển dụng</h2>
+
+  <div class="row mb-2">
+    <div class="col-4"></div>
+    <div class="col-8 p-1 d-flex justify-content-end">
+      <button class="btn btn-sm btn-info me-1" (click)="reload()">
+        <i class="pi pi-refresh"></i>
+        Làm mới
+      </button>
+      <a [routerLink]="['/']" class="btn btn-sm btn-light">
+        <i class="pi pi-replay"></i>
+        Quay lại
+      </a>
+    </div>
+  </div>
+
+  <p-table
+    [value]="users"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Hiển thị từ {first} tới {last} của {totalRecords} bản ghi"
+    [rowsPerPageOptions]="[10, 20, 50]"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>STT</th>
+        <th>Họ Tên</th>
+        <th>Email</th>
+        <th>Số điện thoại</th>
+        <th>Tổng số</th>
+        <th>Đang hiển thị</th>
+        <th>Chờ duyệt</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
+      <tr>
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ user.fullName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phoneNumber }}</td>
+        <td>{{ user?.summary?.total ?? 0 }}</td>
+        <td>{{ user?.summary?.display ?? 0 }}</td>
+        <td>{{ user?.summary?.submit ?? 0 }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

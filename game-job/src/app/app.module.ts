@@ -36,28 +36,30 @@ import { StoreModule } from '@ngrx/store';
 import { bookReducer } from './store/book.reducer';
 import { ParamComponent } from './features/building-blocks/param/param.component';
 import { NavbarComponent } from './features/navbar/navbar.component';
-import { LoginComponent } from './features/login/login.component';
+import { LoginComponent } from './features/accounts/login/login.component';
 import { AuthInterceptor } from './interceptor/authen.interceptor';
 import { AccessDeniedComponent } from './features/access-denied/access-denied.component';
-import { JobListComponent } from './features/jobs/job-list/job-list.component';
-import { JobListItemComponent } from './features/jobs/job-list-item/job-list-item.component';
-import { JobDetailComponent } from './features/jobs/job-detail/job-detail.component';
-import { JobUpsertComponent } from './features/job-management/job-upsert/job-upsert.component';
-import { EmployeeListComponent } from './features/employees/employee-list/employee-list.component';
-import { EmployeeDetailComponent } from './features/employees/employee-detail/employee-detail.component';
-import { EmployerListComponent } from './features/employers/employer-list/employer-list.component';
-import { EmployerDetailComponent } from './features/employers/employer-detail/employer-detail.component';
+import { JobListComponent } from './features/job-homes/job-list/job-list.component';
+import { JobListItemComponent } from './features/job-homes/job-list-item/job-list-item.component';
+import { JobDetailComponent } from './features/job-homes/job-detail/job-detail.component';
+import { JobUpsertComponent } from './features/job-managements/job-upsert/job-upsert.component';
+import { EmployerListComponent } from './features/accounts/employers/employer-list/employer-list.component';
 import { PackageSaleListComponent } from './features/package-sale/package-sale-list/package-sale-list.component';
 import { PackageSaleUpsertComponent } from './features/package-sale/package-sale-upsert/package-sale-upsert.component';
-import { JobAutocompleteComponent } from './features/jobs/job-autocomplete/job-autocomplete.component';
+import { JobAutocompleteComponent } from './features/job-homes/job-autocomplete/job-autocomplete.component';
 import { FooterComponent } from './features/footer/footer.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { JobRelatedListComponent } from './features/jobs/job-related-list/job-related-list.component';
+import { JobRelatedListComponent } from './features/job-homes/job-related-list/job-related-list.component';
 import { ImagePipe } from './pipes/image.pipe';
 import { OverlaySpinnerComponent } from './features/overlay-spinner/overlay-spinner.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import {EditorModule} from 'primeng/editor';
-import { JobManagementListComponent } from './features/job-management/job-management-list/job-management-list.component';
+import { JobManagementListComponent } from './features/job-managements/job-management-list/job-management-list.component';
+import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
+import { RegisterComponent } from './features/accounts/register/register.component';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { CandidateListComponent } from './features/accounts/candidates/candidate-list/employer-list.component';
 
 @NgModule({
   declarations: [
@@ -89,10 +91,7 @@ import { JobManagementListComponent } from './features/job-management/job-manage
     JobListItemComponent,
     JobDetailComponent,
     JobUpsertComponent,
-    EmployeeListComponent,
-    EmployeeDetailComponent,
     EmployerListComponent,
-    EmployerDetailComponent,
     PackageSaleListComponent,
     PackageSaleUpsertComponent,
     JobAutocompleteComponent,
@@ -100,7 +99,9 @@ import { JobManagementListComponent } from './features/job-management/job-manage
     JobRelatedListComponent,
     ImagePipe,
     OverlaySpinnerComponent,
-    JobManagementListComponent
+    JobManagementListComponent,
+    RegisterComponent,
+    CandidateListComponent
   ],
   imports: [
     BrowserModule,
@@ -117,6 +118,9 @@ import { JobManagementListComponent } from './features/job-management/job-manage
     NgSelectModule,
     ProgressSpinnerModule,
     EditorModule,
+    DialogModule,
+    CalendarModule,
+    RadioButtonModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreModule.forFeature('bookStore', bookReducer),

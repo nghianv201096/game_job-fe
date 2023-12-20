@@ -1,0 +1,90 @@
+<div class="card-container">
+    <div class="card card-login">
+      <div class="card-body">
+        <h1 class="card-title">Đăng ký</h1>
+  
+        <div>
+          <div class="row py-3">
+            <label for="email" class="col-form-label col-sm-3">Email</label>
+            <div class="col-md-9">
+              <input
+                type="text"
+                id="email"
+                name="email"
+                [(ngModel)]="user.email"
+                required
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row py-3">
+            <label for="email" class="col-form-label col-sm-3">Họ tên</label>
+            <div class="col-md-9">
+              <input
+                type="text"
+                id="fullname"
+                name="fullname"
+                [(ngModel)]="user.fullname"
+                required
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row py-3">
+            <label for="password" class="col-form-label col-sm-3">Mật khẩu</label>
+            <div class="col-md-9">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                [(ngModel)]="user.password"
+                required
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row py-3">
+            <label for="password" class="col-form-label col-sm-3">Nhập lại mật khẩu</label>
+            <div class="col-md-9">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                [(ngModel)]="user.reenterPassword"
+                required
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="row py-3">
+            <label for="password" class="col-form-label col-sm-3">Bạn là </label>
+            <div class="col-md-9">
+                <p-radioButton
+                name="role"
+                value="{{employerRole.id}}"
+                label="{{employerRole.name}}"
+                [(ngModel)]="user.role"
+                class="me-2"
+              ></p-radioButton>
+              <p-radioButton
+                name="role"
+                value="{{candidateRole.id}}"
+                label="{{candidateRole.name}}"
+                [(ngModel)]="user.role"
+              ></p-radioButton>
+            </div>
+          </div>
+          <div class="row py-3">
+            <a [routerLink]="['/dang-nhap']" class="btn btn-danger col-5">
+              <span class="pi pi-sign-in"></span>
+              Đăng nhập</a
+            >
+            <button (click)="registerUser()" class="btn btn-warning col-5 offset-2">
+              <span class="pi pi-user-plus"></span> Đăng ký
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
