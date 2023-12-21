@@ -60,6 +60,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { RegisterComponent } from './features/accounts/register/register.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CandidateListComponent } from './features/accounts/candidates/candidate-list/employer-list.component';
+import { JobApplyListComponent } from './features/job-apply-list/job-apply-list.component';
+import { JobApplyUpsertComponent } from './features/job-apply-list/job-apply-upsert/job-apply-upsert.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -101,7 +104,9 @@ import { CandidateListComponent } from './features/accounts/candidates/candidate
     OverlaySpinnerComponent,
     JobManagementListComponent,
     RegisterComponent,
-    CandidateListComponent
+    CandidateListComponent,
+    JobApplyListComponent,
+    JobApplyUpsertComponent
   ],
   imports: [
     BrowserModule,
@@ -121,6 +126,7 @@ import { CandidateListComponent } from './features/accounts/candidates/candidate
     DialogModule,
     CalendarModule,
     RadioButtonModule,
+    FileUploadModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreModule.forFeature('bookStore', bookReducer),

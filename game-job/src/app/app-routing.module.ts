@@ -24,6 +24,8 @@ import { JobManagementListComponent } from './features/job-managements/job-manag
 import { RegisterComponent } from './features/accounts/register/register.component';
 import { EmployerListComponent } from './features/accounts/employers/employer-list/employer-list.component';
 import { CandidateListComponent } from './features/accounts/candidates/candidate-list/employer-list.component';
+import { JobApplyListComponent } from './features/job-apply-list/job-apply-list.component';
+import { JobApplyUpsertComponent } from './features/job-apply-list/job-apply-upsert/job-apply-upsert.component';
 
 const routes: Routes = [
   {
@@ -52,6 +54,18 @@ const routes: Routes = [
   {
     path: 'tin-tuyen-dung/thao-tac/:id',
     component: JobUpsertComponent,
+  },
+  {
+    path: 'ung-tuyen',
+    component: JobApplyListComponent,
+  },
+  {
+    path: 'ung-tuyen/thao-tac/:jobId/:id',
+    component: JobApplyUpsertComponent,
+  },
+  {
+    path: 'ung-tuyen/chi-tiet/:jobId/:id',
+    component: JobApplyUpsertComponent,
   },
   {
     path: 'profile',

@@ -21,9 +21,9 @@ export class UserService {
     );
   }
 
-  getCandiateJobDetail(): Observable<MethodResult<CandidateJobDetail>> {
+  getCandiateJobDetail(jobId: number): Observable<MethodResult<CandidateJobDetail>> {
     return this.http.get<MethodResult<CandidateJobDetail>>(
-      `${this.apiUrl}/ViewCandidateJobDetail`
+      `${this.apiUrl}/ViewCandidateJobDetail/${jobId}`
     );
   }
 

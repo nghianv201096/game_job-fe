@@ -1,8 +1,5 @@
 <div class="container job-detail px-5">
   <div class="d-flex justify-content-end pb-3">
-    <button *ngIf="!isPreview" (click)="back()" class="btn btn-light">
-      <i class="pi pi-undo"></i> Quay lại
-    </button>
     <button *ngIf="canHide()" (click)="hide()" class="btn btn-warning me-2">
       <i class="pi pi-send"></i> Gỡ tin
     </button>
@@ -92,7 +89,7 @@
           </div>
 
           <div class="apply-button-container">
-            <button
+            <!-- <button
               *ngIf="
                 candidate.alreadyWhishedList || isPreview;
                 else notInWhishedList
@@ -113,7 +110,7 @@
                 <i class="pi pi-heart"></i>
                 Yêu thích
               </button>
-            </ng-template>
+            </ng-template> -->
 
             <button
               *ngIf="candidate.alreadyApply || isPreview; else notApply"
@@ -124,9 +121,9 @@
             </button>
 
             <ng-template #notApply>
-              <button (click)="apply()" class="btn btn-danger">
+              <a *ngIf="user?.isCandidate()" [routerLink]="['/ung-tuyen','thao-tac',job.id,0]" class="btn btn-danger">
                 <i class="pi pi-send"></i> Ứng tuyển
-              </button>
+              </a>
             </ng-template>
           </div>
         </div>
@@ -139,7 +136,7 @@
     <div class="col-md-3 col-sm-4 employer-info-container">
       <div class="employer-info">
         <div class="image">
-          <img src="{{ creator.employerAvatar ?? '' | imageUrl }}" />
+          <img src="{{ creator.employerAvatar | imageUrl }}" />
         </div>
         <div class="company-name">
           <a [routerLink]="['/nha-tuyen-dung', job.id]">

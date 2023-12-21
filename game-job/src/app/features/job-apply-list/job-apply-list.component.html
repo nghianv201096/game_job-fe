@@ -1,0 +1,70 @@
+<div class="p-5">
+  <h2>Danh sách ứng tuyển</h2>
+
+  <div class="row mb-2">
+    <div class="col-4"></div>
+    <div class="col-8 p-1 d-flex justify-content-end">
+      <a
+        [routerLink]="['/tin-tuyen-dung', 'thao-tac', 0]"
+        class="btn btn-sm btn-success me-1"
+      >
+        <i class="pi pi-plus"></i>
+        Tạo mới</a
+      >
+      <button class="btn btn-sm btn-info me-1" (click)="reload()">
+        <i class="pi pi-refresh"></i>
+        Làm mới
+      </button>
+      <a [routerLink]="['/']" class="btn btn-sm btn-light">
+        <i class="pi pi-replay"></i>
+        Quay lại
+      </a>
+    </div>
+  </div>
+
+  <p-table
+    [value]="applications"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Hiển thị từ {first} tới {last} của {totalRecords} bản ghi"
+    [rowsPerPageOptions]="[10, 20, 50]"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>STT</th>
+        <th>Mã tin</th>
+        <th>Tin tuyển dụng</th>
+        <th>Nhà tuyển dụng</th>
+        <th>ƯV Họ tên</th>
+        <th>ƯV Email</th>
+        <th>Trạng thái</th>
+        <th style="width: 150px">Thao tác</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-application let-rowIndex="rowIndex">
+      <tr>
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ application.jobCode }}</td>
+        <td>{{ application.jobTitle }}</td>
+        <td>{{ application.employerFullName }}</td>
+        <td>{{ application.candidateFullName }}</td>
+        <td>{{ application.candidateEmail }}</td>
+        <td>{{ application.status | enumDescription : statuses }}</td>
+        <td>
+          <a
+            [routerLink]="[
+              '/ung-tuyen',
+              'thao-tac',
+              application.jobId,
+              application.id
+            ]"
+            class="btn btn-sm btn-outline-warning me-1"
+            ><i class="pi pi-pencil"></i> Chỉnh sửa</a
+          >
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

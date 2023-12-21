@@ -1,0 +1,170 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="save()"
+  class="row g-3 col-md-8 offset-md-2"
+>
+  <h2>Ứng tuyển</h2>
+  <div *ngIf="msg" class="alert {{ msgClass }}" role="alert">
+    {{ msg }}
+  </div>
+  <ng-container *ngIf="!user?.isCandidate()">
+    <div class="col-6">
+      <label class="form-label">Họ Tên Ứng viên</label>
+      <input
+        type="text"
+        class="form-control"
+        id="candidateFullName"
+        formControlName="candidateFullName"
+        [disabled]="true"
+      />
+    </div>
+    <div class="col-6">
+      <label class="form-label">Email Ứng viên</label>
+      <input
+        type="text"
+        class="form-control"
+        id="candidateEmail"
+        formControlName="candidateEmail"
+        [disabled]="true"
+      />
+    </div>
+  </ng-container>
+  <div class="col-6">
+    <label class="form-label">Mã tin tuyển dụng</label>
+    <input
+      type="text"
+      class="form-control"
+      id="jobCode"
+      formControlName="jobCode"
+      [disabled]="true"
+    />
+  </div>
+  <div class="col-6">
+    <label class="form-label">Tên Nhà tuyển dụng</label>
+    <input
+      type="text"
+      class="form-control"
+      id="employerFullName"
+      formControlName="employerFullName"
+      [disabled]="true"
+    />
+  </div>
+  <div class="col-12">
+    <label class="form-label">Tin tuyển dụng</label>
+    <input
+      type="text"
+      class="form-control"
+      id="jobTitle"
+      formControlName="jobTitle"
+      [disabled]="true"
+    />
+  </div>
+  <div class="col-12">
+    <label class="form-label">Trạng thái</label>
+    <ng-select
+      [items]="statuses"
+      bindLabel="code"
+      bindValue="id"
+      [multiple]="false"
+      id="status"
+      formControlName="status"
+      [appendTo]="'body'"
+      [disabled]="true"
+    >
+    </ng-select>
+  </div>
+
+  <div *ngIf="hasRejectReason()" class="col-12">
+    <label class="form-label">Lý do từ chối</label>
+    <p-editor
+      id="rejectReason"
+      formControlName="rejectReason"
+      [style]="{ height: '120px' }"
+    ></p-editor>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label">Lời giới thiệu</label>
+    <p-editor
+      id="coverLetter"
+      formControlName="coverLetter"
+      [style]="{ height: '120px' }"
+      [disabled]="!this.isAddNew"
+    ></p-editor>
+  </div>
+
+  <div *ngIf="isAddNew" class="col-12">
+    <label class="form-label">Chọn CV của bạn (pdf, doc, docx)</label>
+    <div class="col-12">
+      <p-fileUpload
+        chooseLabel="Click để tải lên..."
+        name="demo[]"
+        accept=".pdf,.doc,.docx"
+        (onSelect)="onSelect($event)"
+        (onRemove)="onClear()"
+        [showCancelButton]="false"
+        [showUploadButton]="false"
+      ></p-fileUpload>
+    </div>
+  </div>
+  <div *ngIf="!isAddNew" class="col-12">
+    <label class="form-label">CV File</label>
+    <a style="font-size: 1rem;"
+      class="nav-link link-info"
+      href="{{ application.cvFilePath | imageUrl }}"
+      target="_blank"
+      ><span class="pi pi-file" style="font-size: 1rem;"></span> {{ application.cvFileName }}</a
+    >
+  </div>
+
+  <div class="col-12 d-flex justify-content-end">
+    <button *ngIf="isAddNew" type="submit" class="btn btn-success me-1">
+      <i class="pi pi-save"></i> Lưu
+    </button>
+    <ng-container *ngIf="!isAddNew">
+      <button
+        *ngIf="isWatingAdminDecision"
+        (click)="approveForAdmin()"
+        type="button"
+        class="btn btn-success me-1"
+      >
+        <i class="pi pi-check"></i> Duyệt
+      </button>
+      <button
+        *ngIf="isWatingAdminDecision"
+        (click)="rejectForAdmin()"
+        type="button"
+        class="btn btn-danger me-1"
+      >
+        <i class="pi pi-times"></i> Từ chối
+      </button>
+      <button
+        *ngIf="isWatingEmployerDecision"
+        (click)="approveForEmployer()"
+        type="button"
+        class="btn btn-success me-1"
+      >
+        <i class="pi pi-check"></i> Duyệt
+      </button>
+      <button
+        *ngIf="isWatingEmployerDecision"
+        (click)="rejectForEmployer()"
+        type="button"
+        class="btn btn-danger me-1"
+      >
+        <i class="pi pi-times"></i> Từ chối
+      </button>
+      <button
+        *ngIf="isCandidateCanCancel"
+        (click)="cancel()"
+        type="button"
+        class="btn btn-danger me-1"
+      >
+        <i class="pi pi-times"></i> Hủy bỏ
+      </button>
+    </ng-container>
+    <a [routerLink]="['/ung-tuyen']" type="button" class="btn btn-light">
+      <i class="pi pi-undo"></i> Quay lại
+    </a>
+  </div>
+</form>

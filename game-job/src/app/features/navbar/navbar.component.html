@@ -58,6 +58,17 @@
           >
         </li>
 
+        <ng-container *ngIf="isCandidate || isAdmin || isEmployer">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/ung-tuyen']"
+              >Ứng tuyển</a
+            >
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/yeu-thich']">Yêu thích</a>
+          </li> -->
+        </ng-container>
+
         <ng-container *ngIf="isAdmin">
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/nha-tuyen-dung']"
@@ -72,19 +83,6 @@
               >Bài đăng Blog</a
             >
           </li> -->
-        </ng-container>
-
-        <ng-container *ngIf="isCandidate">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/ung-tuyen/danh-sach']"
-              >Ứng tuyển</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/yeu-thich']"
-              >Yêu thích</a
-            >
-          </li>
         </ng-container>
       </ul>
       <div class="d-flex">

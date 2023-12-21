@@ -21,7 +21,6 @@ import { UserService } from 'src/app/services/user.service';
 export class JobDetailComponent {
   id!: number;
   isPreview: boolean = false;
-
   job!: JobDetailDto;
   creator!: CreatorJobDetail;
   candidate!: CandidateJobDetail;
@@ -70,7 +69,7 @@ export class JobDetailComponent {
           const getCreatorObservable = this.userService.getCreatorJobDetail(
             this.job.createdBy
           );
-          const getCandidateInfo = this.userService.getCandiateJobDetail();
+          const getCandidateInfo = this.userService.getCandiateJobDetail(this.id);
           forkJoin([getCreatorObservable, getCandidateInfo])
             .pipe(
               finalize(() => {
@@ -102,10 +101,6 @@ export class JobDetailComponent {
 
   back() {
     this.location.back();
-  }
-
-  apply() {
-    this.commonService.showNotImplement();
   }
 
   like() {
