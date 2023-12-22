@@ -14,16 +14,66 @@
               <img
                 src="{{ user?.avatarFileName | imageUrl }}"
                 alt="Avatar"
-                class="img-fluid my-5"
-                style="width: 200px; height: 200px;object-fit: cover; border-radius: 50%;"
+                class="img-fluid mt-5 mb-3"
+                style="
+                  width: 300px;
+                  height: 300px;
+                  object-fit: cover;
+                  border-radius: 50%;
+                "
               />
-              <h3>{{ user?.fullname }}</h3>
-              <i class="far fa-edit mb-5"></i>
+              <div *ngIf="!isShowUploadAvatar">
+                <button
+                  (click)="isShowUploadAvatar = true"
+                  class="btn btn-sm btn-primary"
+                >
+                  <span class="pi pi-upload"></span> Tải lên
+                </button>
+              </div>
+              <div *ngIf="isShowUploadAvatar">
+                <p-fileUpload
+                  #fileUpload
+                  accept=".PNG,.JPEG,.SVG"
+                  [multiple]="false"
+                  accept="image/*"
+                  [maxFileSize]="100 * 1024"
+                  chooseLabel="Chọn"
+                  [chooseStyleClass]="'btn btn-sm btn-primary'"
+                  cancelLabel="Bỏ"
+                  [cancelStyleClass]="'btn btn-sm btn-light'"
+                  uploadLabel="Lưu"
+                  [uploadStyleClass]="'btn btn-sm btn-success me-2'"
+                  (onSelect)="selectAvatar($event)"
+                  (onBeforeUpload)="uploadAvatar($event)"
+                >
+                  <ng-template let-file pTemplate="file">
+                    {{ file.name }}
+                  </ng-template>
+                  <ng-template pTemplate="toolbar">
+                    <button
+                      (click)="isShowUploadAvatar = false"
+                      class="btn btn-sm btn-secondary"
+                    >
+                      Đóng
+                    </button>
+                  </ng-template>
+                </p-fileUpload>
+              </div>
             </div>
             <div class="col-md-8">
-              <div class="card-body p-4">
+              <div *ngIf="!isShowUpdate" class="card-body p-4">
                 <h3>Thông tin chung</h3>
                 <hr class="mt-0 mb-4" />
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Họ Tên</h6>
+                    <p class="text-muted">{{ user?.fullName }}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Vai trò</h6>
+                    <p class="text-muted">{{ user?.roleNames }}</p>
+                  </div>
+                </div>
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
                     <h6>Email</h6>
@@ -31,42 +81,143 @@
                   </div>
                   <div class="col-6 mb-3">
                     <h6>Số điện thoại</h6>
-                    <p class="text-muted">{{ user?.phoneNumber ?? 'N/A'}}</p>
+                    <p class="text-muted">{{ user?.phoneNumber ?? "N/A" }}</p>
                   </div>
                 </div>
                 <div class="row pt-1">
                   <div class="col-6 mb-3">
                     <h6>Facebook</h6>
-                    <p class="text-muted">{{ user?.facebook ?? 'N/A'}}</p>
+                    <p class="text-muted">{{ user?.facebook ?? "N/A" }}</p>
                   </div>
                   <div class="col-6 mb-3">
                     <h6>LinkIn</h6>
-                    <p class="text-muted">{{ user?.linkdIn ?? 'N/A'}}</p>
+                    <p class="text-muted">{{ user?.linkdIn ?? "N/A" }}</p>
                   </div>
                 </div>
                 <div class="row pt-1">
                   <div class="col-12 mb-3">
                     <h6>Website</h6>
-                    <p class="text-muted">{{ user?.website ?? 'N/A'}}</p>
+                    <p class="text-muted">{{ user?.website ?? "N/A" }}</p>
                   </div>
                 </div>
                 <div class="row pt-1">
                   <div class="col-12 mb-3">
                     <h6>Địa chỉ</h6>
-                    <p class="text-muted">{{ user?.address ?? 'N/A'}}</p>
+                    <p class="text-muted">{{ user?.address ?? "N/A" }}</p>
                   </div>
                 </div>
                 <h3>Giới thiệu</h3>
                 <hr class="mt-0 mb-4" />
                 <div class="row pt-1">
-                  <div class="col-12 mb-3" [innerHTML]="user?.description ?? 'N/A'">
+                  <div
+                    class="col-12 mb-3"
+                    [innerHTML]="user?.description ?? 'N/A'"
+                  ></div>
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button (click)="showUpdate()" class="btn btn-primary">
+                    <span class="pi pi-pencil"></span> Chỉnh sửa
+                  </button>
+                </div>
+              </div>
+              <div *ngIf="isShowUpdate" class="card-body p-4">
+                <form [formGroup]="form" (ngSubmit)="update()" class="row">
+                  <h3>Thông tin chung</h3>
+                  <hr />
+                  <div class="col-6 mb-3">
+                    <label class="form-label">Họ Tên</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="fullName"
+                      formControlName="fullName"
+                    />
                   </div>
-                </div>
-                <div class="d-flex justify-content-start">
-                  <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                  <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                  <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
-                </div>
+                  <div class="col-6 mb-3">
+                    <label class="form-label">Vai trò</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="roleNames"
+                      formControlName="roleNames"
+                    />
+                  </div>
+                  <div class="col-6 mb-3">
+                    <label class="form-label">Email</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="email"
+                      formControlName="email"
+                    />
+                  </div>
+                  <div class="col-6 mb-3">
+                    <label class="form-label">Số điện thoại</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="phoneNumber"
+                      formControlName="phoneNumber"
+                    />
+                  </div>
+                  <div class="col-6 mb-3">
+                    <label class="form-label">Facebook</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="facebook"
+                      formControlName="facebook"
+                    />
+                  </div>
+                  <div class="col-6 mb-3">
+                    <label class="form-label">LinkIn</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="linkdIn"
+                      formControlName="linkdIn"
+                    />
+                  </div>
+                  <div class="col-12 mb-3">
+                    <label class="form-label">Website</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="website"
+                      formControlName="website"
+                    />
+                  </div>
+                  <div class="col-12 mb-3">
+                    <label class="form-label">Địa chỉ</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="address"
+                      formControlName="address"
+                    />
+                  </div>
+                  <h3>Giới thiệu</h3>
+                  <hr />
+                  <div class="col-12 mb-3">
+                    <p-editor
+                      id="description"
+                      formControlName="description"
+                      [style]="{ height: '120px' }"
+                    ></p-editor>
+                  </div>
+                  <div class="col-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success me-1">
+                      <i class="pi pi-save"></i> Lưu
+                    </button>
+                    <button
+                      (click)="isShowUpdate = false"
+                      class="btn btn-light"
+                    >
+                      <span class="pi pi-times"></span>
+                      Bỏ qua
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

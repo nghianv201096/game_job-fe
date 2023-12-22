@@ -168,7 +168,7 @@ export class AuthenticationService {
 
       return new UserProfileDto(
         userParsed.id,
-        userParsed.fullname,
+        userParsed.fullName,
         userParsed.email,
         userParsed.phoneNumber,
         userParsed.roles

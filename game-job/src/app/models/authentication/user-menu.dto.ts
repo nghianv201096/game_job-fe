@@ -3,32 +3,38 @@ import { RoleEnum } from 'src/app/enums/role.enum';
 export class UserProfileDto {
   constructor(
     id: number,
-    fullname: string,
+    fullName: string,
     email: string,
-    phoneNumber: string,
+    phoneNumber: string | undefined,
     roles: string[]
   ) {
     this.id = id;
-    this.fullname = fullname;
+    this.fullName = fullName;
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.roles = roles;
+    this.roleNames = RoleEnum.All.filter(
+      (r) => this.roles.includes(r.code) == true
+    )
+      .map((item) => item.name)
+      .join(', ');
   }
 
   id!: number;
-  fullname!: string;
+  fullName!: string;
   email!: string;
   phoneNumber?: string;
   facebook?: string;
   linkdIn?: string;
   website?: string;
   address?: string;
-  
+
   description?: string;
-  
+
   avatarFileName?: string;
-  
+
   roles!: string[];
+  roleNames?: string;
 
   private isInRole(role: string): boolean {
     return this.roles?.includes(role) === true;

@@ -47,4 +47,18 @@ export class UserService {
       `${this.apiUrl}/ViewEmployers`
     );
   }
+
+  updateAvatar(data: any): Observable<MethodResult<string>> {
+    return this.http.put<MethodResult<string>>(
+      `${this.apiUrl}/UpdateAvatar`,
+      data
+    );
+  }
+
+  update(data: any): Observable<MethodResult<string>> {
+    return this.http.put<MethodResult<string>>(
+      `${this.apiUrl}/Update`,
+      data
+    );
+  }
 }
