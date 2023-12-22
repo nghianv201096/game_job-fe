@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './features/not-found/not-found.component';
-import { ProfileComponent } from './features/building-blocks/profile/profile.component';
 import { DataBindingComponent } from './features/building-blocks/data-binding/data-binding.component';
 import { DirectivesComponent } from './features/building-blocks/directives/directives.component';
 import { ReactiveFormComponent } from './features/building-blocks/reactive-form/reactive-form.component';
@@ -26,6 +25,7 @@ import { EmployerListComponent } from './features/accounts/employers/employer-li
 import { CandidateListComponent } from './features/accounts/candidates/candidate-list/employer-list.component';
 import { JobApplyListComponent } from './features/job-apply-list/job-apply-list.component';
 import { JobApplyUpsertComponent } from './features/job-apply-list/job-apply-upsert/job-apply-upsert.component';
+import { ProfileComponent } from './features/accounts/profile/profile.component';
 
 const routes: Routes = [
   {

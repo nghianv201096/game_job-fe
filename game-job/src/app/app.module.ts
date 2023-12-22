@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProfileComponent } from './features/building-blocks/profile/profile.component';
 import { HomeComponent } from './features/home/home.component';
 import { NotFoundComponent } from './features/not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -63,6 +62,7 @@ import { CandidateListComponent } from './features/accounts/candidates/candidate
 import { JobApplyListComponent } from './features/job-apply-list/job-apply-list.component';
 import { JobApplyUpsertComponent } from './features/job-apply-list/job-apply-upsert/job-apply-upsert.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ProfileComponent } from './features/accounts/profile/profile.component';
 
 @NgModule({
   declarations: [

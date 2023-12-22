@@ -18,7 +18,16 @@ export class UserProfileDto {
   id!: number;
   fullname!: string;
   email!: string;
-  phoneNumber!: string;
+  phoneNumber?: string;
+  facebook?: string;
+  linkdIn?: string;
+  website?: string;
+  address?: string;
+  
+  description?: string;
+  
+  avatarFileName?: string;
+  
   roles!: string[];
 
   private isInRole(role: string): boolean {

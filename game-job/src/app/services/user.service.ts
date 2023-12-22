@@ -6,6 +6,7 @@ import { MethodResult } from '../models/api-response.dto';
 import { CreatorJobDetail } from '../models/authentication/creator-job-detail.dto';
 import { CandidateJobDetail } from '../models/authentication/candidate-job-detail.dto';
 import { UserByRoleDto } from '../models/users/user-by-role.dto';
+import { UserProfileDto } from '../models/authentication/user-menu.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +22,17 @@ export class UserService {
     );
   }
 
-  getCandiateJobDetail(jobId: number): Observable<MethodResult<CandidateJobDetail>> {
+  getCandiateJobDetail(
+    jobId: number
+  ): Observable<MethodResult<CandidateJobDetail>> {
     return this.http.get<MethodResult<CandidateJobDetail>>(
       `${this.apiUrl}/ViewCandidateJobDetail/${jobId}`
+    );
+  }
+
+  getUserProfile(): Observable<MethodResult<UserProfileDto>> {
+    return this.http.get<MethodResult<UserProfileDto>>(
+      `${this.apiUrl}/ViewUserProfile`
     );
   }
 
